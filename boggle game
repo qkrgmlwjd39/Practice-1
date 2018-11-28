@@ -23,3 +23,7 @@ bool has_Word(int x, int y, const string& word) {
 		return false;
 	}
 }
+
+
+//time complecity
+//O(8^N)
