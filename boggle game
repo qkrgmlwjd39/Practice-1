@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <string.h>
+
+using namespace std;
+
+const int dx[8] = {-1,-1,-1,0,0,1,1,1};
+const int dy[8] = {-1,0,1,-1,1,-1,0,1};
+char board[5][5]; //boogle board
+bool has_Word(int x, int y, const string& word) {
+	if ((x > 4) || (x < 0) || (y < 0) || (y > 4)) { return -1; } //if x, y is out of range, return false.
+	else if (board[x][y] != word[0]) { return -1; } // if there is no letter same with word[0], return false.
+	else if (word.size() == 1) {return 1; } // if there is letter which is same with first letter of word and if the word is one letter, return true.
+	else {
+		for (int direction = 0; direction < 8; +direction) {
+			int n_x = x + dx[direction];
+			int n_y = y + dy[direction];
+			if (has_Word(n_x, n_y, word.substr(1))) //recursion. substr = string cutting.
+				return true;
+
+		}
+		return false;
+	}
+}
